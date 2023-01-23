@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 namespace HIS
 {
+    //git test
     static class Program
     {
         /// <summary>
