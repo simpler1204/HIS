@@ -464,7 +464,11 @@ namespace HIS.Forms
                         tableData.Add(reader[2].ToString());
                         tableData.Add(reader[3].ToString());
                         tableData.Add(reader[4].ToString());
-                        tableData.Add(DateTime.Parse(reader[5].ToString()).ToString("yyyy-MM-dd HH:mm:ss"));
+
+                        if (reader[5].ToString() != "")
+                            tableData.Add(DateTime.Parse(reader[5].ToString()).ToString("yyyy-MM-dd HH:mm:ss"));
+                        else
+                            tableData.Add("");
 
                         if (reader[6].ToString() != "")
                             tableData.Add(DateTime.Parse(reader[6].ToString()).ToString("yyyy-MM-dd HH:mm:ss"));

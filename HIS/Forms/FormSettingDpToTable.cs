@@ -606,7 +606,8 @@ namespace HIS.Forms
                                         LOGGING_CYCLE,
                                         SAVING_GRADE,
                                         EMPTY
-                                        FROM C2_TREND_TABLE_INFO_MASTER WHERE SYSTEM = :1";
+                                        FROM C2_TREND_TABLE_INFO_MASTER WHERE SYSTEM = :1
+                                        ORDER BY TABLE_NAME";
 
             OracleCommand cmd = new OracleCommand(query, Database.OracleConn);
             cmd.Parameters.Add(":1", OracleDbType.Varchar2).Value = system;

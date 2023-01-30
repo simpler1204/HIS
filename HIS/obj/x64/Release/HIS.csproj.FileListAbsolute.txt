@@ -334,8 +334,8 @@ C:\C2HVAC\HIS\HIS\bin\x64\Release\de\DevExpress.Xpo.v21.1.resources.dll
 C:\C2HVAC\HIS\HIS\bin\x64\Release\es\DevExpress.Xpo.v21.1.resources.dll
 C:\C2HVAC\HIS\HIS\bin\x64\Release\ja\DevExpress.Xpo.v21.1.resources.dll
 C:\C2HVAC\HIS\HIS\bin\x64\Release\ru\DevExpress.Xpo.v21.1.resources.dll
-C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csprojAssemblyReference.cache
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.ResolveComReference.cache
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormAddDp.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormAlarm.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormAlarmMain.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormCreateGroup.resources
@@ -363,3 +363,4 @@ C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.exe.licenses
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.CoreCompileInputs.cache
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.CopyComplete
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.exe
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csprojAssemblyReference.cache

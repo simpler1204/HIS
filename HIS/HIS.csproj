@@ -109,6 +109,12 @@
     <Compile Include="FormPartial\PartialTrendInfo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FormAddDp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddDp.Designer.cs">
+      <DependentUpon>FormAddDp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAlarm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FormAddDp.resx">
+      <DependentUpon>FormAddDp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAlarm.resx">
       <DependentUpon>FormAlarm.cs</DependentUpon>
     </EmbeddedResource>

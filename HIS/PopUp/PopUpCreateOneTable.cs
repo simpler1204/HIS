@@ -177,7 +177,7 @@ namespace HIS.Popup
                 return;
             }
 
-            DialogResult rtn = MessageBox.Show("Do you want create tables?", "Information", 
+            DialogResult rtn = MessageBox.Show("Do you want to create tables?", "Information", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
             if (rtn == DialogResult.No)

@@ -68,7 +68,7 @@
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("TrendInfo", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Trend Info", -1, true, null, true, false, true, null, -1, true),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("Manager", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Table Manager", 2, true, null, true, false, true, null, -1, true),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("Mapping", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "DP Mapping", -1, true, null, true, false, true, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Initialize", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Trend Initialize", -1, true, null, true, false, true, null, -1, false)});
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Initialize", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Trend Initialize", -1, true, null, true, false, false, null, -1, false)});
             this.menuPanel.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.menuPanel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -81,6 +81,7 @@
             this.menuPanel.TabIndex = 0;
             this.menuPanel.Text = "windowsUIButtonPanel1";
             this.menuPanel.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.menuPanel_ButtonClick);
+            this.menuPanel.Click += new System.EventHandler(this.menuPanel_Click);
             // 
             // FormTrendTableManager
             // 

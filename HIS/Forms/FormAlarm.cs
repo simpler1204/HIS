@@ -481,7 +481,7 @@ namespace HIS.Forms
                 dataGridView1.Columns["RESET"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridView1.Columns["ACK_NAME"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                DataGridViewCell c =  dataGridView1.Rows[1].Cells[1]; 
+                //DataGridViewCell c =  dataGridView1.Rows[1].Cells[1]; 
             }
             catch(Exception ex)
             {

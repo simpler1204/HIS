@@ -430,7 +430,7 @@ namespace HIS
                         }
                         trend4 = new FormTrend4(this);
                         trend4.StartPosition = FormStartPosition.CenterScreen;
-                        trend4.TopMost = true;
+                        //trend4.TopMost = true;
                         trend4.Show();
                         trend4.Activate();
 
@@ -514,6 +514,40 @@ namespace HIS
                     }));
                 }
                 catch 
+                {
+                    // MessageBox.Show(ex.Message);
+                }
+
+            }
+
+            if (receiveData[0] == "addDp") //trend dp 추가
+            {
+                string system = receiveData[1];
+                try
+                {
+                    this.Invoke(new MethodInvoker(delegate ()
+                    {
+                        foreach (Form form in Application.OpenForms)
+                        {
+                            if (form.GetType() == typeof(FormAddDp))
+                            {
+                                form.Close();
+                                break;
+                                //form.Activate();
+                                //FormAddDp formAddDp = form as FormAddDp;
+                                //formAddDp.GetTables(val);
+                                //return;
+                            }
+                          
+                        }
+                        FormAddDp addDp = new FormAddDp(val);                        
+                        //addDp.Show();
+                        //addDp.Activate();
+                        //addDp.GetTables(val);
+
+                    }));
+                }
+                catch
                 {
                     // MessageBox.Show(ex.Message);
                 }

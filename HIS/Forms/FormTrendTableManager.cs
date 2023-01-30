@@ -16,6 +16,7 @@ namespace HIS.Forms
     public partial class FormTrendTableManager : Form
     {
         MainForm mainForm;
+        int ClickCount = 0;
         public FormTrendTableManager(MainForm mainForm)
         {
             InitializeComponent();
@@ -111,7 +112,7 @@ namespace HIS.Forms
                                 menuPanel.Buttons["TrendInfo"].Properties.Visible = true;
                                 menuPanel.Buttons["Manager"].Properties.Visible = true;
                                 menuPanel.Buttons["Mapping"].Properties.Visible = true;
-                                menuPanel.Buttons["Initialize"].Properties.Visible = true;
+                                menuPanel.Buttons["Initialize"].Properties.Visible = false;
                             }
                             else
                             {
@@ -263,6 +264,14 @@ namespace HIS.Forms
             }
         }
 
+        private void menuPanel_Click(object sender, EventArgs e)
+        {
+            if(++ClickCount == 15)
+            {
+                menuPanel.Buttons["Initialize"].Properties.Visible = true;
+                ClickCount = 0;
+            }
+        }
     }
 }
 
