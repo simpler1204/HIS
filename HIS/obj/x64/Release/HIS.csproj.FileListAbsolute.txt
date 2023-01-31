@@ -363,4 +363,3 @@ C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.exe.licenses
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.CoreCompileInputs.cache
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.CopyComplete
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.exe
-C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csprojAssemblyReference.cache

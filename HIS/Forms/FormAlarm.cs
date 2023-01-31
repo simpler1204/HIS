@@ -29,6 +29,7 @@ namespace HIS.Forms
 
         int totalCount = 0;
         int unAckCount = 0;
+        int seqNumber = 0;
 
         SplashScreenManager splashScreenManager1;
 
@@ -434,11 +435,16 @@ namespace HIS.Forms
                 if (alarmMsg != "%%")
                     cmd.Parameters.Add(":6", OracleDbType.Varchar2).Value = alarmMsg;
 
+                totalCount = 0;
+                seqNumber = 0;
+                unAckCount = 0;
+
                 OracleDataReader reader = cmd.ExecuteReader();
                 if (!reader.HasRows) return;                
                 while(reader.Read())
                 {
                     totalCount++;
+                    seqNumber++;
 
                     DataRow row         = dtAlarmHistory.NewRow();
                     //row["SEQ"] = totalCount.ToString("#,##0");
@@ -456,20 +462,21 @@ namespace HIS.Forms
                     row["PANEL"]        = reader[11].ToString();
                     dtAlarmHistory.Rows.Add(row);
 
-                    dataGridView1.Rows[totalCount - 1].DefaultCellStyle.BackColor = Colors.dgvBackColor;
-                    DataGridViewImageCell cell = dataGridView1.Rows[totalCount - 1].Cells[0] as DataGridViewImageCell;
+                    dataGridView1.Rows[seqNumber - 1].DefaultCellStyle.BackColor = Colors.dgvBackColor;
+                    DataGridViewImageCell cell = dataGridView1.Rows[seqNumber - 1].Cells[0] as DataGridViewImageCell;
                     cell.Value = (System.Drawing.Image)Properties.Resources.normal2;
 
                     if (reader[6].ToString() == "")
                         unAckCount++;
                 }
 
-                lblTotal.Text = totalCount.ToString("#,##0");
-                lblUnAck.Text = unAckCount.ToString("#,##0");
+                lblTotal.Text = totalCount.ToString();
+                lblUnAck.Text = unAckCount.ToString();
 
+                seqNumber = totalCount;
                 foreach (DataRow item in dtAlarmHistory.Rows)
                 {
-                    item["SEQ"] = totalCount--;
+                    item["SEQ"] = seqNumber--;
                 }
 
                 InitDataGridView.AutoSettingDatagridView(dataGridView1, new List<int>() { 4, 5 }, new List<int>());
@@ -595,10 +602,12 @@ namespace HIS.Forms
             dtAlarmHistory.Rows.InsertAt(dr, 0);
             dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.FromArgb(60,60,60);
                        
-            int unAck = unAckCount; // int.Parse(lblUnAck.Text);
-            int total = totalCount;
-            lblUnAck.Text = (unAck + 1).ToString();
-            lblTotal.Text = (total + 1).ToString();
+            int unAck = ++unAckCount; // int.Parse(lblUnAck.Text);
+            int total = ++totalCount;
+            lblUnAck.Text = unAck.ToString();
+            lblTotal.Text = total.ToString();
+
+          
 
 
             if (sLevel == "1")
@@ -684,9 +693,9 @@ namespace HIS.Forms
 
             }
 
-            int unAck = unAckCount; //int.Parse(lblUnAck.Text);
+            int unAck = --unAckCount; //int.Parse(lblUnAck.Text);
             int total = totalCount;// int.Parse(lblTotal.Text);
-            lblUnAck.Text = (unAck - 1).ToString("#,##0");
+            lblUnAck.Text = unAck.ToString();
             
         }
 
