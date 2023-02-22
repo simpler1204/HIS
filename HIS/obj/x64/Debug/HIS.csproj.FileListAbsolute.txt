@@ -368,3 +368,10 @@ C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.csproj.CopyComplete
 C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.exe
 C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.pdb
 C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.Forms.FormAddDp.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.Forms.FormsTrendGroupSetting.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.Forms.FormNewTrendGroup.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.Forms.FormSmsSetting.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.Forms.FormSmsHIST.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.PopUp.PopUpPage.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.PopUp.PopUpPart.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Debug\HIS.PopUp.PopUpSearchTrendGroup.resources

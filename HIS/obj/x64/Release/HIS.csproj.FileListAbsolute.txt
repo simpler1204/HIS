@@ -342,12 +342,16 @@ C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormCreateGroup.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormMenu.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormMenuMain.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormMultiTrend.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormNewTrendGroup.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormOperationMain.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormPopupCreateTable.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormOperation.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormSettingDpToTable.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormPopupTrendInfo.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormSmsHIST.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormSmsMain.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormSmsSetting.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormsTrendGroupSetting.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormTrend.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormTrendGroupSetting.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Forms.FormTrendTableManager.resources
@@ -356,6 +360,9 @@ C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.MainForm.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Popup.PopUpCreateOneTable.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpCreateTrendGroup.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpInsertDp.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpPage.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpPart.resources
+C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpSearchTrendGroup.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.PopUp.PopUpTrendGroup.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.Properties.Resources.resources
 C:\C2HVAC\HIS\HIS\obj\x64\Release\HIS.csproj.GenerateResource.cache

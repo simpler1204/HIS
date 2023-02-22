@@ -151,6 +151,12 @@
     <Compile Include="Forms\FormMultiTrend.Designer.cs">
       <DependentUpon>FormMultiTrend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormNewTrendGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNewTrendGroup.Designer.cs">
+      <DependentUpon>FormNewTrendGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormOperationMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,11 +187,29 @@
     <Compile Include="Forms\FormPopupTrendInfo.Designer.cs">
       <DependentUpon>FormPopupTrendInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSmsHIST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSmsHIST.Designer.cs">
+      <DependentUpon>FormSmsHIST.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSmsMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormSmsMain.Designer.cs">
       <DependentUpon>FormSmsMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSmsSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSmsSetting.Designer.cs">
+      <DependentUpon>FormSmsSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsTrendGroupSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsTrendGroupSetting.Designer.cs">
+      <DependentUpon>FormsTrendGroupSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormTrend.cs">
       <SubType>Form</SubType>
@@ -253,6 +277,24 @@
     <Compile Include="PopUp\PopUpInsertDp.Designer.cs">
       <DependentUpon>PopUpInsertDp.cs</DependentUpon>
     </Compile>
+    <Compile Include="PopUp\PopUpPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopUp\PopUpPage.Designer.cs">
+      <DependentUpon>PopUpPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopUp\PopUpPart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopUp\PopUpPart.Designer.cs">
+      <DependentUpon>PopUpPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopUp\PopUpSearchTrendGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopUp\PopUpSearchTrendGroup.Designer.cs">
+      <DependentUpon>PopUpSearchTrendGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="PopUp\PopUpTrendGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +324,9 @@
     <EmbeddedResource Include="Forms\FormMultiTrend.resx">
       <DependentUpon>FormMultiTrend.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNewTrendGroup.resx">
+      <DependentUpon>FormNewTrendGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormOperationMain.resx">
       <DependentUpon>FormOperationMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,8 +342,17 @@
     <EmbeddedResource Include="Forms\FormPopupTrendInfo.resx">
       <DependentUpon>FormPopupTrendInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSmsHIST.resx">
+      <DependentUpon>FormSmsHIST.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSmsMain.resx">
       <DependentUpon>FormSmsMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSmsSetting.resx">
+      <DependentUpon>FormSmsSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsTrendGroupSetting.resx">
+      <DependentUpon>FormsTrendGroupSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTrend.resx">
       <DependentUpon>FormTrend.cs</DependentUpon>
@@ -323,6 +377,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PopUp\PopUpInsertDp.resx">
       <DependentUpon>PopUpInsertDp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUp\PopUpPage.resx">
+      <DependentUpon>PopUpPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUp\PopUpPart.resx">
+      <DependentUpon>PopUpPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUp\PopUpSearchTrendGroup.resx">
+      <DependentUpon>PopUpSearchTrendGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PopUp\PopUpTrendGroup.resx">
       <DependentUpon>PopUpTrendGroup.cs</DependentUpon>

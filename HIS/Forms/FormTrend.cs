@@ -176,10 +176,17 @@ namespace HIS.Forms
         public async void CreateSeriesByTrendGroup(string val)
         {
 
+            fMin = 0f; //차트 최소값 초기화
+            fMax = 100f; //차트 최대값 초기화
+
+
             splashScreenManager1.ShowWaitForm();
             TrendDatabase.Open();
 
             ChartTimeSpan(DateTime.Parse(startDate.Text), DateTime.Parse(endDate.Text));
+
+            //c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(0, 100);
+            //c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(0, 100);
 
             if (val.Length > 0)
             {
@@ -298,11 +305,13 @@ namespace HIS.Forms
                 if (form.GetType() == typeof(PopUpTrendGroup))
                 {
                     form.Activate();
+                    form.TopMost = true;
                     form.WindowState = FormWindowState.Normal;
                     return;
                 }
             }           
             PopUpTrendGroup group = new PopUpTrendGroup();
+           
            
 
             group.selectGroup += async (val) =>
@@ -311,6 +320,8 @@ namespace HIS.Forms
                 TrendDatabase.Open();
 
                 ChartTimeSpan(DateTime.Parse(startDate.Text), DateTime.Parse(endDate.Text));
+                fMin = 0;
+                fMax = 100;
 
                 if (val.Length > 0)
                 {
@@ -432,6 +443,11 @@ namespace HIS.Forms
 
             splashScreenManager1.ShowWaitForm();
             ChartTimeSpan(DateTime.Parse(startDate.Text), DateTime.Parse(endDate.Text));
+
+            fMin = 0;
+            fMax = 0;
+            c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(0, 100);
+            c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(0, 100);
 
             Dictionary<string, Color> dpColor = new Dictionary<string, Color>();
            

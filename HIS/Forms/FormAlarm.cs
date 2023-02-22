@@ -388,7 +388,21 @@ namespace HIS.Forms
 
              
             string ackUser = "%" + txtAckUser.Text + "%";
-            string alarmLevel = "%" + cmbAlarmLevel.Text + "%";
+
+            string strAlm = string.Empty;
+            if (cmbAlarmLevel.Text == "ALL")
+                strAlm = "ALL";
+            else if (cmbAlarmLevel.Text == "EMERGENCY")
+                strAlm = "1";
+            else if (cmbAlarmLevel.Text == "ALARM")
+                strAlm = "2";
+            else if (cmbAlarmLevel.Text == "WARNING")
+                strAlm = "3";
+            else if (cmbAlarmLevel.Text == "CAUTION")
+                strAlm = "4";
+
+
+            string alarmLevel = strAlm == "ALL" ? "%" : "%" + strAlm + "%";
             string dpName = "%" + txtDpName.Text + "%";
             string alarmMsg = "%" + txtAlarmMsg.Text + "%";
 
@@ -397,10 +411,23 @@ namespace HIS.Forms
             dtAlarmHistory.Clear();
 
             string query = string.Empty;
-            query = " SELECT TO_CHAR(INSERT_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS INSERT_TIME, ALM_PRIO, DP, ALM_MSG, PV_VAL, SP_VAL, ";
-            query += " TO_CHAR(ACK_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS ACK_TIME, DUR_ACK, TO_CHAR(RESET_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS RESET_TIME, DUR_RST, ";
-            query += " ACK_FULLNAME, PANEL FROM HMI_HIST_ALARM  ";
-            query += " WHERE INSERT_TIME BETWEEN :1 AND :2 ";
+            //query = " SELECT TO_CHAR(INSERT_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS INSERT_TIME, ALM_PRIO, DP, ALM_MSG, PV_VAL, SP_VAL, ";
+            //query += " TO_CHAR(ACK_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS ACK_TIME, DUR_ACK, TO_CHAR(RESET_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS RESET_TIME, DUR_RST, ";
+            //query += " ACK_FULLNAME, PANEL FROM HMI_HIST_ALARM  ";
+            //query += " WHERE INSERT_TIME BETWEEN :1 AND :2 ";
+
+            query = @" SELECT TO_CHAR(INSERT_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS INSERT_TIME, 
+                       CASE WHEN ALM_PRIO=1 THEN 'EMERGENCY'  
+                            WHEN ALM_PRIO=2 THEN 'ALARM'  
+                            WHEN ALM_PRIO=3 THEN 'WARNING'  
+                            WHEN ALM_PRIO=4 THEN 'CAUTION' 
+                            END AS ALM_PRIO,  
+                            DP, ALM_MSG, PV_VAL, SP_VAL, 
+                            TO_CHAR(ACK_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS ACK_TIME, 
+                            DUR_ACK, TO_CHAR(RESET_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS RESET_TIME, 
+                            DUR_RST, ACK_FULLNAME, PANEL 
+                            FROM HMI_HIST_ALARM   
+                            WHERE INSERT_TIME BETWEEN :1 AND :2 ";
 
             if (alarmLevel != "%%")            
                 query += " AND ALM_PRIO LIKE :3 ";

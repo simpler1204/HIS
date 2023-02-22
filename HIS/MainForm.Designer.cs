@@ -141,7 +141,7 @@
             this.btnSms.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnSms.Size = new System.Drawing.Size(220, 60);
             this.btnSms.TabIndex = 4;
-            this.btnSms.Text = "SMS";
+            this.btnSms.Text = "SMS 威信";
             this.btnSms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSms.UseVisualStyleBackColor = true;
@@ -230,7 +230,7 @@
             this.btnHome.Image = global::HIS.Properties.Resources.hynix;
             this.btnHome.Location = new System.Drawing.Point(8, 24);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(200, 80);
+            this.btnHome.Size = new System.Drawing.Size(180, 70);
             this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnHome.TabIndex = 0;
             this.btnHome.TabStop = false;

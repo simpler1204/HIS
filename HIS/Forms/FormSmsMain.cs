@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace HIS.Forms
 {
     public partial class FormSmsMain : Form
@@ -24,12 +25,51 @@ namespace HIS.Forms
             }
 
             mainForm.MsgFromOa += MainForm_MsgFromOa;
+            menuPanel.ButtonClick += MenuPanel_ButtonClick;
 
 
             this.FormClosing += (sender, e) =>
             {
                 mainForm.MsgFromOa -= MainForm_MsgFromOa;
             };
+        }
+
+        private void MenuPanel_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
+        {
+            string buttonName = e.Button.Properties.Caption;
+            switch (buttonName)
+            {
+                case "Setting":
+                    foreach (Form form in Application.OpenForms)
+                    {
+                        if (form.GetType() == typeof(FormSmsSetting))
+                        {
+                            form.Activate();
+                            form.WindowState = FormWindowState.Normal;
+                            return;
+                        }
+                    }
+                    FormSmsSetting frmSetting = new FormSmsSetting(this.mainForm);
+                    frmSetting.Show();
+                    break;
+
+                case "History":
+                    foreach (Form form in Application.OpenForms)
+                    {
+                        if (form.GetType() == typeof(FormSmsHIST))
+                        {
+                            form.Activate();
+                            form.WindowState = FormWindowState.Normal;
+                            return;
+                        }
+                    }
+                    FormSmsHIST frmHist = new FormSmsHIST();
+                    frmHist.Show();
+                    break;
+
+
+
+            }
         }
 
         private void MainForm_MsgFromOa(string val)

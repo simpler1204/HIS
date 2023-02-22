@@ -17,11 +17,18 @@ namespace HIS.Forms
     {
         public SwiftPlotDiagram c2SwiftPlotDiagram;
         public ChartControl c2ChartContorl;
-        private TrendColor trendColor = new TrendColor(); 
+        private TrendColor trendColor = new TrendColor();
+
+        float fMin = 0f; //차트 최소값
+        float fMax = 100f; //차트 최대값
+
+
         public void InitChartControl()
         {   
             Color backColor = Color.FromArgb(255, 30, 30, 30);
             Color foreColor = Color.FromArgb(255,200, 200, 200);
+
+           
 
             //swift 그래프를 사용하기 위해서 생성
             c2SwiftPlotDiagram = new SwiftPlotDiagram();
@@ -122,14 +129,52 @@ namespace HIS.Forms
             ((ISupportInitialize)(c2ChartContorl)).EndInit();
 
             c2ChartContorl.Zoom += C2ChartContorl_Zoom;
+            c2ChartContorl.MouseWheel += C2ChartContorl_MouseWheel;
 
             tableLayoutPanel4.Controls.Add(c2ChartContorl, 0, 1);
+        }
+
+        
+
+        private void C2ChartContorl_MouseWheel(object sender, MouseEventArgs e)
+        {
+            VisualRange range = c2SwiftPlotDiagram.AxisY.VisualRange;
+
+            float fTempMin;
+            bool rtn1 = float.TryParse(range.MinValue.ToString(), out fTempMin);
+
+            if ((fMax - fMin) < 60) return;
+
+
+            if (e.X > 0 && e.X < 50)
+            {
+                if (rtn1)
+                {
+                    if (e.Delta < 0)
+                    {
+                        fMin -= 2;
+                        fMax += 2;
+                        c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(fMin, fMax);
+                        c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(fMin, fMax);
+                    }
+                    else if (e.Delta > 0)
+                    {
+                        fMin += 2;
+                        fMax -= 2;
+                        c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(fMin, fMax);
+                        //c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(fMin, fMax);
+                    }
+                }
+            }
+           
         }
 
         private void C2ChartContorl_Zoom(object sender, ChartZoomEventArgs e)
         {
             chkReal.Checked = false;
             isRealCheked = false;
+
+            
         }
 
         //private void AddSeries(string dpName, string startDt, string endDt)
@@ -295,17 +340,30 @@ namespace HIS.Forms
 
         private void SetMinMax(float min, float max)
         {
-            float fMin = 0f, fMax = 100f;
+            float tempMin = 0f, tempMax = 0f;
+            bool rtn = false;
 
             foreach (DataRow item in dtTrendData.Rows)
             {
-                if (float.Parse(item["MIN"].ToString()) > min)
-                    fMin = min;
-                if (float.Parse(item["MAX"].ToString()) < max)
-                    fMax = max;
+                rtn = float.TryParse(item["MIN"].ToString(), out tempMin);
+                if(rtn == true)
+                {
+                    if (tempMin < fMin) fMin = tempMin;
+                }
+
+                rtn = float.TryParse(item["MAX"].ToString(), out tempMax);
+                if (rtn == true)
+                {
+                    if (tempMax > fMax) fMax = tempMax;
+                }
 
                 c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(fMin, fMax);
                 c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(fMin, fMax);
+                
+                //c2SwiftPlotDiagram.EnableAxisXScrolling = false;
+                //c2SwiftPlotDiagram.EnableAxisYScrolling = false;
+
+
             }
         }
 

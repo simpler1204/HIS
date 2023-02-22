@@ -36,17 +36,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbPart = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.menu2 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
-            this.menu1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtDpName = new System.Windows.Forms.TextBox();
             this.cmbSystem = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.menu1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTrendInfo = new System.Windows.Forms.DataGridView();
@@ -95,6 +95,15 @@
             this.cmbPart.Size = new System.Drawing.Size(96, 20);
             this.cmbPart.TabIndex = 23;
             // 
+            // cmbGroup
+            // 
+            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(74, 59);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(215, 20);
+            this.cmbGroup.TabIndex = 21;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -104,15 +113,6 @@
             this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 22;
             this.label3.Text = "Part :";
-            // 
-            // cmbGroup
-            // 
-            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(74, 59);
-            this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(215, 20);
-            this.cmbGroup.TabIndex = 21;
             // 
             // label7
             // 
@@ -159,6 +159,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Trend Info";
             // 
+            // txtDesc
+            // 
+            this.txtDesc.Location = new System.Drawing.Point(83, 70);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(283, 21);
+            this.txtDesc.TabIndex = 12;
+            // 
+            // txtDpName
+            // 
+            this.txtDpName.Location = new System.Drawing.Point(83, 46);
+            this.txtDpName.Name = "txtDpName";
+            this.txtDpName.Size = new System.Drawing.Size(283, 21);
+            this.txtDpName.TabIndex = 11;
+            // 
+            // cmbSystem
+            // 
+            this.cmbSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSystem.FormattingEnabled = true;
+            this.cmbSystem.Items.AddRange(new object[] {
+            "ALL",
+            "C2_HVAC_S1",
+            "C2_HVAC_S2",
+            "C2_HVAC_S3",
+            "C2_HVAC_S4"});
+            this.cmbSystem.Location = new System.Drawing.Point(84, 23);
+            this.cmbSystem.Name = "cmbSystem";
+            this.cmbSystem.Size = new System.Drawing.Size(131, 20);
+            this.cmbSystem.TabIndex = 14;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -168,13 +197,6 @@
             this.label5.Size = new System.Drawing.Size(56, 12);
             this.label5.TabIndex = 13;
             this.label5.Text = "System :";
-            // 
-            // txtDesc
-            // 
-            this.txtDesc.Location = new System.Drawing.Point(83, 70);
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(283, 21);
-            this.txtDesc.TabIndex = 12;
             // 
             // menu1
             // 
@@ -199,28 +221,6 @@
             this.label1.Size = new System.Drawing.Size(67, 12);
             this.label1.TabIndex = 9;
             this.label1.Text = "DP Name :";
-            // 
-            // txtDpName
-            // 
-            this.txtDpName.Location = new System.Drawing.Point(83, 46);
-            this.txtDpName.Name = "txtDpName";
-            this.txtDpName.Size = new System.Drawing.Size(283, 21);
-            this.txtDpName.TabIndex = 11;
-            // 
-            // cmbSystem
-            // 
-            this.cmbSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSystem.FormattingEnabled = true;
-            this.cmbSystem.Items.AddRange(new object[] {
-            "ALL",
-            "C2_HVAC_S1",
-            "C2_HVAC_S2",
-            "C2_HVAC_S3",
-            "C2_HVAC_S4"});
-            this.cmbSystem.Location = new System.Drawing.Point(84, 23);
-            this.cmbSystem.Name = "cmbSystem";
-            this.cmbSystem.Size = new System.Drawing.Size(131, 20);
-            this.cmbSystem.TabIndex = 14;
             // 
             // label2
             // 

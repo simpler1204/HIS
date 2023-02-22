@@ -96,11 +96,11 @@
             // txtAckUser
             // 
             this.txtAckUser.BackColor = System.Drawing.SystemColors.Control;
-            this.txtAckUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAckUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAckUser.ForeColor = System.Drawing.Color.Black;
-            this.txtAckUser.Location = new System.Drawing.Point(398, 13);
+            this.txtAckUser.Location = new System.Drawing.Point(389, 13);
             this.txtAckUser.Name = "txtAckUser";
-            this.txtAckUser.Size = new System.Drawing.Size(68, 22);
+            this.txtAckUser.Size = new System.Drawing.Size(125, 21);
             this.txtAckUser.TabIndex = 48;
             // 
             // cmbAlarmLevel
@@ -109,18 +109,18 @@
             this.cmbAlarmLevel.BackColor = System.Drawing.SystemColors.Control;
             this.cmbAlarmLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAlarmLevel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbAlarmLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbAlarmLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbAlarmLevel.ForeColor = System.Drawing.Color.Black;
             this.cmbAlarmLevel.FormattingEnabled = true;
             this.cmbAlarmLevel.Items.AddRange(new object[] {
             "ALL",
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.cmbAlarmLevel.Location = new System.Drawing.Point(398, 41);
+            "EMERGENCY",
+            "ALARM",
+            "WARNING",
+            "CAUTION"});
+            this.cmbAlarmLevel.Location = new System.Drawing.Point(389, 41);
             this.cmbAlarmLevel.Name = "cmbAlarmLevel";
-            this.cmbAlarmLevel.Size = new System.Drawing.Size(68, 24);
+            this.cmbAlarmLevel.Size = new System.Drawing.Size(125, 23);
             this.cmbAlarmLevel.TabIndex = 49;
             // 
             // txtDpName
@@ -128,9 +128,9 @@
             this.txtDpName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDpName.ForeColor = System.Drawing.Color.Black;
-            this.txtDpName.Location = new System.Drawing.Point(514, 13);
+            this.txtDpName.Location = new System.Drawing.Point(580, 13);
             this.txtDpName.Name = "txtDpName";
-            this.txtDpName.Size = new System.Drawing.Size(298, 22);
+            this.txtDpName.Size = new System.Drawing.Size(259, 22);
             this.txtDpName.TabIndex = 50;
             // 
             // txtAlarmMsg
@@ -138,9 +138,9 @@
             this.txtAlarmMsg.BackColor = System.Drawing.SystemColors.Control;
             this.txtAlarmMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAlarmMsg.ForeColor = System.Drawing.Color.Black;
-            this.txtAlarmMsg.Location = new System.Drawing.Point(514, 42);
+            this.txtAlarmMsg.Location = new System.Drawing.Point(580, 42);
             this.txtAlarmMsg.Name = "txtAlarmMsg";
-            this.txtAlarmMsg.Size = new System.Drawing.Size(298, 22);
+            this.txtAlarmMsg.Size = new System.Drawing.Size(259, 22);
             this.txtAlarmMsg.TabIndex = 51;
             // 
             // startDt
@@ -171,7 +171,7 @@
             this.chkRecent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRecent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkRecent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRecent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.chkRecent.ForeColor = System.Drawing.Color.White;
             this.chkRecent.Location = new System.Drawing.Point(218, 35);
             this.chkRecent.Name = "chkRecent";
             this.chkRecent.Size = new System.Drawing.Size(78, 36);
@@ -185,8 +185,8 @@
             this.chkRealTime.AutoSize = true;
             this.chkRealTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkRealTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRealTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.chkRealTime.Location = new System.Drawing.Point(834, 13);
+            this.chkRealTime.ForeColor = System.Drawing.Color.White;
+            this.chkRealTime.Location = new System.Drawing.Point(872, 13);
             this.chkRealTime.Name = "chkRealTime";
             this.chkRealTime.Size = new System.Drawing.Size(90, 20);
             this.chkRealTime.TabIndex = 52;
@@ -198,7 +198,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(924, 47);
+            this.label8.Location = new System.Drawing.Point(962, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(11, 12);
             this.label8.TabIndex = 41;
@@ -207,8 +207,8 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.lblTotal.Location = new System.Drawing.Point(994, 47);
+            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.Location = new System.Drawing.Point(1032, 47);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(11, 12);
             this.lblTotal.TabIndex = 40;
@@ -219,7 +219,7 @@
             // 
             this.lblUnAck.AutoSize = true;
             this.lblUnAck.ForeColor = System.Drawing.Color.Yellow;
-            this.lblUnAck.Location = new System.Drawing.Point(887, 47);
+            this.lblUnAck.Location = new System.Drawing.Point(925, 47);
             this.lblUnAck.Name = "lblUnAck";
             this.lblUnAck.Size = new System.Drawing.Size(11, 12);
             this.lblUnAck.TabIndex = 39;
@@ -230,7 +230,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Yellow;
-            this.label5.Location = new System.Drawing.Point(832, 47);
+            this.label5.Location = new System.Drawing.Point(870, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 12);
             this.label5.TabIndex = 38;
@@ -239,8 +239,8 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label9.Location = new System.Drawing.Point(941, 47);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(979, 47);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
             this.label9.TabIndex = 37;
@@ -250,8 +250,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label1.Location = new System.Drawing.Point(25, 16);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(23, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 40;
@@ -261,8 +261,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label2.Location = new System.Drawing.Point(28, 45);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(26, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 16);
             this.label2.TabIndex = 45;
@@ -272,8 +272,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label4.Location = new System.Drawing.Point(319, 16);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(314, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 16);
             this.label4.TabIndex = 41;
@@ -283,8 +283,8 @@
             // 
             this.cbmAlarmLevel.AutoSize = true;
             this.cbmAlarmLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbmAlarmLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.cbmAlarmLevel.Location = new System.Drawing.Point(314, 45);
+            this.cbmAlarmLevel.ForeColor = System.Drawing.Color.White;
+            this.cbmAlarmLevel.Location = new System.Drawing.Point(309, 45);
             this.cbmAlarmLevel.Name = "cbmAlarmLevel";
             this.cbmAlarmLevel.Size = new System.Drawing.Size(74, 16);
             this.cbmAlarmLevel.TabIndex = 42;
@@ -294,8 +294,8 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label6.Location = new System.Drawing.Point(478, 16);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(542, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(33, 16);
             this.label6.TabIndex = 43;
@@ -305,8 +305,8 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label7.Location = new System.Drawing.Point(470, 45);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(534, 45);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 16);
             this.label7.TabIndex = 44;
@@ -334,7 +334,7 @@
             this.panelProgress.Controls.Add(this.lblTotalCount);
             this.panelProgress.Controls.Add(this.lblNowCount);
             this.panelProgress.Controls.Add(this.progressBar1);
-            this.panelProgress.Location = new System.Drawing.Point(461, 317);
+            this.panelProgress.Location = new System.Drawing.Point(472, 283);
             this.panelProgress.Name = "panelProgress";
             this.panelProgress.Size = new System.Drawing.Size(335, 72);
             this.panelProgress.TabIndex = 2;

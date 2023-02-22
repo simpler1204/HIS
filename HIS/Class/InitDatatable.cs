@@ -175,6 +175,112 @@ namespace HIS.Class
                 table.Columns.Add("DATETIME", typeof(string));
                 table.Columns.Add("CURR", typeof(float));
             }
+            else if (table.TableName == "TrendDpList")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("PAGE_NAME", typeof(string));                
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;
+            }
+            else if (table.TableName == "FirstTrendGroup")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("PAGE_NAME", typeof(string));               
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;
+            }
+            else if (table.TableName == "SecondTrendGroup")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("PAGE_NAME", typeof(string));               
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;
+            }
+            else if (table.TableName == "TrendGroupDpList")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("SYSTEM", typeof(string));
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;
+                
+            }
+            else if (table.TableName == "TrendGroupFirst")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("SYSTEM", typeof(string));
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;
+               
+            }
+            else if (table.TableName == "TrendGroupSecond")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("SYSTEM", typeof(string));
+
+                var keys = new DataColumn[1];
+                DataColumn pk = new DataColumn();
+                pk.DataType = Type.GetType("System.String");
+                pk.ColumnName = "DP_NAME";
+                table.Columns.Add(pk);
+                keys[0] = pk;
+                table.PrimaryKey = keys;                
+            }
+            else if (table.TableName == "SmsUser")
+            {
+                table.Columns.Add("CHK", typeof(bool));
+                table.Columns.Add("SEQ", typeof(int));
+                table.Columns.Add("USER_NAME", typeof(string));
+                table.Columns.Add("PHONE_NUMBER", typeof(string));
+                table.Columns.Add("WORK_NO", typeof(string));
+                table.Columns.Add("RECEIVE_YN", typeof(bool));
+            }
+            else if (table.TableName == "SMS_HIST")
+            {
+                table.Columns.Add("SENT_TIME", typeof(string));
+                table.Columns.Add("NAME", typeof(string));
+                table.Columns.Add("PHONE", typeof(string));
+                table.Columns.Add("MESSAGE", typeof(string));
+                table.Columns.Add("SUCCESS", typeof(string));
+                table.Columns.Add("ALARM_TIME", typeof(string));
+                table.Columns.Add("DSNT", typeof(string));
+            }
+
         }
     }
 }

@@ -28,6 +28,7 @@ namespace HIS.Forms
             menu1.ButtonClick += Menu1_ButtonClick;
             cmbPart.SelectedIndexChanged += CmbPart_SelectedIndexChanged;
             cmbGroup.SelectedIndexChanged += CmbGroup_SelectedIndexChanged;
+            dgvTrendGroup.CellValueChanged += DgvTrendGroup_CellValueChanged;            
             menu2.ButtonClick += Menu2_ButtonClick;
 
             this.FormClosing += (sender, e) =>
@@ -39,6 +40,43 @@ namespace HIS.Forms
                 menu2.ButtonClick -= Menu2_ButtonClick;
             };
             
+        }
+
+        private void DgvTrendGroup_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex < 3) return;
+
+            string dpName = dgvTrendGroup[1, e.RowIndex].Value.ToString();
+            float fValue = 0f;
+
+            
+            if(e.ColumnIndex == 3 && float.TryParse(dgvTrendGroup[3, e.RowIndex].Value.ToString(), out fValue))
+            {
+                var searched = dtTrendDetail.AsEnumerable()
+                                  .Where(r => r.Field<string>("DP_NAME") == dpName);
+
+                foreach (var s in searched)
+                {
+                    s["MIN"] = fValue;
+                }
+            }
+            else if (e.ColumnIndex == 4 && float.TryParse(dgvTrendGroup[4, e.RowIndex].Value.ToString(), out fValue))
+            {
+                var searched = dtTrendDetail.AsEnumerable()
+                                  .Where(r => r.Field<string>("DP_NAME") == dpName);
+
+                foreach (var s in searched)
+                {
+                    s["MAX"] = fValue;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Information", "It is not number", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
         }
 
         private void Menu2_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
@@ -87,6 +125,7 @@ namespace HIS.Forms
             if (!Database.Open()) return;           
             string insertQuery = "INSERT INTO HMI_TREND_GROUP_DETAIL(GROUP_NAME, DP_NAME, DP_DESC, MIN, MAX) " +
                                 "VALUES(:1, :2, :3, :4, :5) ";
+            string updateQuery = " UPDATE C2_TREND_INFO SET Y_MIN = :1, Y_MAX = :2 WHERE DP_NAME = :3";
             string groupName = cmbGroup.Text;
             try
             {
@@ -99,6 +138,18 @@ namespace HIS.Forms
                         cmd.Parameters.Add(":3", OracleDbType.Varchar2).Value = item["DP_DESC"];
                         cmd.Parameters.Add(":4", OracleDbType.Varchar2).Value = item["MIN"];
                         cmd.Parameters.Add(":5", OracleDbType.Varchar2).Value = item["MAX"];
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                    }
+                }
+
+                using (OracleCommand cmd = new OracleCommand(updateQuery, Database.OracleConn))
+                {
+                    foreach (DataRow item in dtTrendDetail.Rows)
+                    {                        
+                        cmd.Parameters.Add(":1", OracleDbType.Varchar2).Value = item["MIN"];
+                        cmd.Parameters.Add(":2", OracleDbType.Varchar2).Value = item["MAX"];
+                        cmd.Parameters.Add(":3", OracleDbType.Varchar2).Value = item["DP_NAME"];
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
@@ -160,7 +211,8 @@ namespace HIS.Forms
                     }
                 }
 
-                InitDataGridView.AutoSettingDatagridView(dgvTrendGroup, new List<int>() { 1, 2 }, new List<int>());               
+                InitDataGridView.AutoSettingDatagridView(dgvTrendGroup, new List<int>() { 1, 2 }, new List<int>());
+                dgvTrendGroup.ReadOnly = false;
             }
             catch(Exception ex)
             {

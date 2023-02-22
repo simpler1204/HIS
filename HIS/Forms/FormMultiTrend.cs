@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HIS.PopUp;
 
 namespace HIS.Forms
 {
@@ -41,14 +42,14 @@ namespace HIS.Forms
                 case "Group":
                     foreach (Form form in Application.OpenForms)
                     {
-                        if (form.GetType() == typeof(FormCreateGroup))
+                        if (form.GetType() == typeof(FormNewTrendGroup))
                         {
                             form.Activate();
                             form.WindowState = FormWindowState.Normal;
                             return;
                         }
                     }
-                    FormCreateGroup frm = new FormCreateGroup();
+                    FormNewTrendGroup frm = new FormNewTrendGroup();
                     frm.Show();
                     break;
 
@@ -66,44 +67,49 @@ namespace HIS.Forms
                     group.Show();
                     break;
 
-                case "Trend1":
+                case "HMI Trend":
+                    //mainForm.sendMsgToOA("find;TrendGroup1");
                     foreach (Form form in Application.OpenForms)
                     {
-                        if (form.GetType() == typeof(FormTrend1))
+                        if (form.GetType() == typeof(PopUpSearchTrendGroup))
                         {
                             form.Activate();
                             form.WindowState = FormWindowState.Normal;
                             return;
                         }
                     }
-                    FormTrend1 trend1 = new FormTrend1(mainForm);
-                    trend1.Show();
+                    PopUpSearchTrendGroup trend2 = new PopUpSearchTrendGroup(mainForm, "hmi");
+                    //trend2.StartPosition = FormStartPosition.WindowsDefaultLocation;
+                    trend2.ShowDialog();
                     break;
-                case "Trend2":
+                case "HIS Trend":
                     foreach (Form form in Application.OpenForms)
                     {
-                        if (form.GetType() == typeof(FormTrend2))
+                        if (form.GetType() == typeof(PopUpSearchTrendGroup))
                         {
                             form.Activate();
                             form.WindowState = FormWindowState.Normal;
                             return;
                         }
                     }
-                    FormTrend2 trend2 = new FormTrend2(mainForm);
-                    trend2.Show();
+                    PopUpSearchTrendGroup frmTrend2 = new PopUpSearchTrendGroup(mainForm, "his");
+                    //trend2.StartPosition = FormStartPosition.WindowsDefaultLocation;
+                    frmTrend2.ShowDialog();
+
                     break;
                 case "Trend3":
-                    foreach (Form form in Application.OpenForms)
-                    {
-                        if (form.GetType() == typeof(FormTrend3))
-                        {
-                            form.Activate();
-                            form.WindowState = FormWindowState.Normal;
-                            return;
-                        }
-                    }
-                    FormTrend3 trend3 = new FormTrend3(mainForm);
-                    trend3.Show();
+                    mainForm.sendMsgToOA("find;TrendGroup3");
+                    //foreach (Form form in Application.OpenForms)
+                    //{
+                    //    if (form.GetType() == typeof(FormTrend3))
+                    //    {
+                    //        form.Activate();
+                    //        form.WindowState = FormWindowState.Normal;
+                    //        return;
+                    //    }
+                    //}
+                    //FormTrend3 trend3 = new FormTrend3(mainForm);
+                    //trend3.Show();
                     break;
 
             }
