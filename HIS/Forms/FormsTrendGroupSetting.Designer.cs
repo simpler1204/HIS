@@ -57,6 +57,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnSecond = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.btnFirst = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
+            this.cmbMenu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -127,6 +128,7 @@
             // 
             // pnl_top
             // 
+            this.pnl_top.Controls.Add(this.cmbMenu);
             this.pnl_top.Controls.Add(this.cmbGroup);
             this.pnl_top.Controls.Add(this.cmbPart);
             this.pnl_top.Controls.Add(this.txtGroup);
@@ -333,6 +335,17 @@
             this.btnFirst.TabIndex = 0;
             this.btnFirst.Text = "windowsUIButtonPanel1";
             // 
+            // cmbMenu
+            // 
+            this.cmbMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMenu.FormattingEnabled = true;
+            this.cmbMenu.Location = new System.Drawing.Point(331, 13);
+            this.cmbMenu.Name = "cmbMenu";
+            this.cmbMenu.Size = new System.Drawing.Size(168, 20);
+            this.cmbMenu.TabIndex = 10;
+            // 
             // FormsTrendGroupSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -378,5 +391,6 @@
         private System.Windows.Forms.ComboBox cmbPart;
         private System.Windows.Forms.TextBox txtGroup;
         private System.Windows.Forms.TextBox txtPart;
+        private System.Windows.Forms.ComboBox cmbMenu;
     }
 }

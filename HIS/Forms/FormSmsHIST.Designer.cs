@@ -42,15 +42,15 @@
             this.cmbSuccess = new System.Windows.Forms.ComboBox();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtMsg = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbDsnt = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.txtMsg = new System.Windows.Forms.TextBox();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.lblNowCount = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbDsnt = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgHist)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelProgress.SuspendLayout();
@@ -200,16 +200,6 @@
             this.panel1.Size = new System.Drawing.Size(1214, 80);
             this.panel1.TabIndex = 1;
             // 
-            // txtMsg
-            // 
-            this.txtMsg.BackColor = System.Drawing.Color.White;
-            this.txtMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMsg.ForeColor = System.Drawing.Color.Black;
-            this.txtMsg.Location = new System.Drawing.Point(521, 41);
-            this.txtMsg.Name = "txtMsg";
-            this.txtMsg.Size = new System.Drawing.Size(201, 22);
-            this.txtMsg.TabIndex = 65;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -221,34 +211,15 @@
             this.label7.TabIndex = 63;
             this.label7.Text = "Msg :";
             // 
-            // cmbDsnt
+            // txtMsg
             // 
-            this.cmbDsnt.AllowDrop = true;
-            this.cmbDsnt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.cmbDsnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDsnt.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbDsnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDsnt.ForeColor = System.Drawing.Color.Black;
-            this.cmbDsnt.FormattingEnabled = true;
-            this.cmbDsnt.Items.AddRange(new object[] {
-            "ALL",
-            "SMS",
-            "WECHAT"});
-            this.cmbDsnt.Location = new System.Drawing.Point(521, 11);
-            this.cmbDsnt.Name = "cmbDsnt";
-            this.cmbDsnt.Size = new System.Drawing.Size(120, 24);
-            this.cmbDsnt.TabIndex = 69;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.label5.Location = new System.Drawing.Point(464, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 16);
-            this.label5.TabIndex = 70;
-            this.label5.Text = "Distict :";
+            this.txtMsg.BackColor = System.Drawing.Color.White;
+            this.txtMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMsg.ForeColor = System.Drawing.Color.Black;
+            this.txtMsg.Location = new System.Drawing.Point(521, 41);
+            this.txtMsg.Name = "txtMsg";
+            this.txtMsg.Size = new System.Drawing.Size(201, 22);
+            this.txtMsg.TabIndex = 65;
             // 
             // panelProgress
             // 
@@ -302,6 +273,37 @@
             this.progressBar1.Size = new System.Drawing.Size(328, 23);
             this.progressBar1.TabIndex = 0;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.label5.Location = new System.Drawing.Point(464, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 16);
+            this.label5.TabIndex = 70;
+            this.label5.Text = "Distict :";
+            this.label5.Visible = false;
+            // 
+            // cmbDsnt
+            // 
+            this.cmbDsnt.AllowDrop = true;
+            this.cmbDsnt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.cmbDsnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDsnt.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbDsnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDsnt.ForeColor = System.Drawing.Color.Black;
+            this.cmbDsnt.FormattingEnabled = true;
+            this.cmbDsnt.Items.AddRange(new object[] {
+            "ALL",
+            "SMS",
+            "WECHAT"});
+            this.cmbDsnt.Location = new System.Drawing.Point(521, 11);
+            this.cmbDsnt.Name = "cmbDsnt";
+            this.cmbDsnt.Size = new System.Drawing.Size(120, 24);
+            this.cmbDsnt.TabIndex = 69;
+            this.cmbDsnt.Visible = false;
+            // 
             // FormSmsHIST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -337,12 +339,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtMsg;
-        private System.Windows.Forms.ComboBox cmbDsnt;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelProgress;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotalCount;
         private System.Windows.Forms.Label lblNowCount;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ComboBox cmbDsnt;
+        private System.Windows.Forms.Label label5;
     }
 }

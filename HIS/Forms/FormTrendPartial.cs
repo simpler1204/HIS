@@ -357,8 +357,8 @@ namespace HIS.Forms
                     if (tempMax > fMax) fMax = tempMax;
                 }
 
-                c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(fMin, fMax);
-                c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(fMin, fMax);
+                c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(fMin, fMax + 50);
+                c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(fMin, fMax + 50);
                 
                 //c2SwiftPlotDiagram.EnableAxisXScrolling = false;
                 //c2SwiftPlotDiagram.EnableAxisYScrolling = false;
@@ -385,8 +385,19 @@ namespace HIS.Forms
         
         private void SetControls(string period)
         {
-           // startDate.Properties.MaskSettings.MaskExpression = "yyyy-MM-dd HH:mm:ss";
-           // endDate.Properties.MaskSettings.MaskExpression = "yyyy-MM-dd HH:mm:ss";
+            // startDate.Properties.MaskSettings.MaskExpression = "yyyy-MM-dd HH:mm:ss";
+            // endDate.Properties.MaskSettings.MaskExpression = "yyyy-MM-dd HH:mm:ss";
+            if (period == "7Day")
+            {
+                //Time Picker 설정               
+                startDate.Text = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd HH:mm:ss");
+                endDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                DateTime start = DateTime.Now.AddDays(-7);
+                DateTime end = DateTime.Now;
+                c2SwiftPlotDiagram.AxisX.WholeRange.SetMinMaxValues(start, end);
+                c2SwiftPlotDiagram.AxisX.VisualRange.SetMinMaxValues(start, end);
+            }
             if (period == "1Day")
             {
                 //Time Picker 설정               

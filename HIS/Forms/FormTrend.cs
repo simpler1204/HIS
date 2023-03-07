@@ -38,7 +38,7 @@ namespace HIS.Forms
         {
             InitializeComponent();
             Load += FormTrend_Load;
-            realTimer.Interval = 2000;
+            realTimer.Interval = 1000;
             realTimer.Tick += RealTimer_Tick;
             this.mainForm = mainForm;
             mainForm.MsgFromOa += MessageFromWinccOA;
@@ -168,8 +168,8 @@ namespace HIS.Forms
         }
 
         private void Menu_group_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
-        {            
-            CreateSeriesByGroupButton();            
+        {
+            CreateSeriesByGroupButton();
         }
 
 
@@ -295,6 +295,143 @@ namespace HIS.Forms
             }
         }
 
+        public async void CreateSeriesByTrendGroup(string part, string group, string distinct)
+        {
+
+            fMin = 0f; //차트 최소값 초기화
+            fMax = 100f; //차트 최대값 초기화
+
+            splashScreenManager1.ShowWaitForm();
+            chkReal.Checked = false;
+            //isRealCheked = false;
+            realTimer.Stop();
+            InitControls();           
+
+            TrendDatabase.Open();
+
+            ChartTimeSpan(DateTime.Parse(startDate.Text), DateTime.Parse(endDate.Text));
+
+            //c2SwiftPlotDiagram.AxisY.VisualRange.SetMinMaxValues(0, 100);
+            //c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(0, 100);
+
+
+            RemoveAllSeries();
+
+            if (!TrendDatabase.Open()) return;
+
+            //string query = "SELECT B.SYSTEM, A.GROUP_NAME, A.DP_NAME, A.DP_DESC, A.MIN, A.MAX " +
+            //                "FROM HMI_TREND_GROUP_DETAIL A JOIN C2_TREND_INFO B ON A.DP_NAME = B.DP_NAME  " +
+            //                "WHERE A.GROUP_NAME = :1";
+            string query = string.Empty;
+            if (distinct == "left")
+            {
+                query = @"SELECT B.SYSTEM, A.GROUP_NAME, A.DP_NAME1 AS DP_NAME, B.DP_DESC, B.Y_MIN AS MIN, B.Y_MAX AS MAX
+                                FROM C2_TREND_GROUP A JOIN C2_TREND_INFO B ON A.DP_NAME1 = B.DP_NAME
+                                WHERE A.PART_NAME = :1 AND A.GROUP_NAME = :2 AND A.DP_NAME1 IS NOT NULL
+                                ORDER BY A.DP_NAME1 ASC";
+            }
+            else
+            {
+                query = @"SELECT B.SYSTEM, A.GROUP_NAME, A.DP_NAME2 AS DP_NAME, B.DP_DESC, B.Y_MIN AS MIN, B.Y_MAX AS MAX
+                                FROM C2_TREND_GROUP A JOIN C2_TREND_INFO B ON A.DP_NAME1 = B.DP_NAME
+                                WHERE A.PART_NAME = :1 AND A.GROUP_NAME = :2 AND A.DP_NAME2 IS NOT NULL
+                                ORDER BY A.DP_NAME2 ASC";
+            }
+
+            try
+            {
+                using (OracleCommand cmd = new OracleCommand(query, TrendDatabase.OracleConn))
+                {
+                    cmd.Parameters.Add(":1", OracleDbType.NVarchar2).Value = part;
+                    cmd.Parameters.Add(":2", OracleDbType.NVarchar2).Value = group;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    List<Series> listSeries = new List<Series>();
+                    List<Task<Series>> listMakeSeries = new List<Task<Series>>();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            c2ChartContorl.Enabled = false;
+                            dgvTrendData.Enabled = false;
+                           
+                            //차트에 이미 등록된 DP인지 확인
+                            DataRow dataRow = null;
+                            dataRow = dtTrendData.Rows.Find(reader["DP_NAME"]);
+
+                            if (dataRow == null) // 등록되지 않았으면..
+                            {                                 
+
+                                DataRow dr = dtTrendData.NewRow();
+                                // dr["SEL"] = false;
+                                dr["VISIBLE"] = true;
+                                dr["DP_NAME"] = reader["DP_NAME"];
+                                dr["DP_DESC"] = reader["DP_DESC"];
+                                dr["MIN"] = reader["MIN"];
+                                dr["MAX"] = reader["MAX"];
+                                dr["SYSTEM"] = reader["SYSTEM"];
+                                dtTrendData.Rows.Add(dr);
+
+                                DataRow dr2 = dtRealTime.NewRow();
+                                dr2["DP_NAME"] = reader["DP_NAME"];
+                                dtRealTime.Rows.Add(dr2);
+
+                                SetMinMax(float.Parse(reader["MIN"].ToString()), float.Parse(reader["MAX"].ToString()));
+
+                                dgvTrendData.Rows[dgvTrendData.Rows.Count - 1].DefaultCellStyle.BackColor = Colors.dgvBackColor;
+                                Color color = trendColor.GetTrendColor();
+                                dgvTrendData[0, dgvTrendData.Rows.Count - 1].Style.BackColor = color;
+                                dgvTrendData[1, dgvTrendData.Rows.Count - 1].Style.BackColor = color;
+
+                                MakeSeries makeSeries = new MakeSeries(reader["DP_NAME"].ToString(), startDate.Text, endDate.Text, trendColor, color);
+                                listMakeSeries.Add(makeSeries.MakeAsync());
+                            }
+                            
+                        }
+
+                        if (c2ChartContorl.Series.Count < 26)
+                        {
+                            foreach (Task<Series> item in listMakeSeries)
+                            {
+                                Series series = await item;
+                                c2ChartContorl.Series.Add(series);
+
+                                if (series.Points.Count > 0)
+                                {
+                                    double[] fVal = series.Points[series.Points.Count - 1].Values;
+                                    DataRow dr = dtTrendData.Rows.Find(series.Name);
+                                    dr["CURR"] = fVal[0].ToString("#,##0.###");
+                                }
+                            }
+                        }
+
+
+
+                        c2ChartContorl.Enabled = true;
+                        dgvTrendData.Enabled = true;
+                        dgvTrendData.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dgvTrendData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dgvTrendData.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dgvTrendData.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    }
+                }
+                splashScreenManager1.CloseWaitForm();
+                lblGroupName.Text = group;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                TrendDatabase.Close();
+            }
+        }
+
 
         private void CreateSeriesByGroupButton()
         {
@@ -309,10 +446,10 @@ namespace HIS.Forms
                     form.WindowState = FormWindowState.Normal;
                     return;
                 }
-            }           
+            }
             PopUpTrendGroup group = new PopUpTrendGroup();
-           
-           
+
+
 
             group.selectGroup += async (val) =>
             {
@@ -403,7 +540,7 @@ namespace HIS.Forms
                                     }
                                 }
 
-                               
+
 
                                 c2ChartContorl.Enabled = true;
                                 dgvTrendData.Enabled = true;
@@ -411,7 +548,7 @@ namespace HIS.Forms
                                 dgvTrendData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 dgvTrendData.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 dgvTrendData.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                                //
                             }
                         }
                         splashScreenManager1.CloseWaitForm();
@@ -439,7 +576,8 @@ namespace HIS.Forms
 
             if (CheckStartEnd() == false) return;
             if (dtTrendData.Rows.Count < 1) return;
-            TrendDatabase.Open();
+
+            if (!TrendDatabase.Open()) return;
 
             splashScreenManager1.ShowWaitForm();
             ChartTimeSpan(DateTime.Parse(startDate.Text), DateTime.Parse(endDate.Text));
@@ -450,22 +588,22 @@ namespace HIS.Forms
             c2SwiftPlotDiagram.AxisY.WholeRange.SetMinMaxValues(0, 100);
 
             Dictionary<string, Color> dpColor = new Dictionary<string, Color>();
-           
+
 
             foreach (DataRow item in dtTrendData.Rows)
             {
                 dpColor.Add(item["DP_NAME"].ToString(), c2ChartContorl.Series[item["DP_NAME"].ToString()].View.Color);
             }
-                       
+
             foreach (Series item in c2ChartContorl.Series)
             {
                 trendColor.RemoveTrendColor(item.View.Color);
             }
 
-            chartCount = 0;         
+            chartCount = 0;
             c2ChartContorl.Series.Clear();
-          
-            if (!TrendDatabase.Open()) return;
+
+            
 
             try
             {
@@ -478,14 +616,14 @@ namespace HIS.Forms
 
                 foreach (DataRow item in dtTrendData.Rows)
                 {
-                   
+
 
                     SetMinMax(float.Parse(item["MIN"].ToString()), float.Parse(item["MAX"].ToString()));
-                   
+
                     MakeSeries makeSeries = new MakeSeries(item["DP_NAME"].ToString(), startDate.Text, endDate.Text, trendColor, dpColor[item["DP_NAME"].ToString()]);
                     listMakeSeries.Add(makeSeries.MakeAsync());
 
-                }                
+                }
 
                 foreach (Task<Series> item in listMakeSeries)
                 {
@@ -499,7 +637,7 @@ namespace HIS.Forms
                         dr["CURR"] = fVal[0].ToString("#,##0.###");
                     }
                 }
-               
+
 
                 c2ChartContorl.Enabled = true;
                 dgvTrendData.Enabled = true;
@@ -559,7 +697,7 @@ namespace HIS.Forms
                                 //차트에 이미 등록된 DP인지 확인
                                 DataRow dataRow = null;
                                 dataRow = dtTrendData.Rows.Find(reader["DP_NAME"]);
-                                                              
+
 
                                 if (dataRow == null) // 등록되지 않았으면..
                                 {
@@ -630,15 +768,15 @@ namespace HIS.Forms
 
         private void Menu_search_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
         {
-           
+
             CreateSeriesBySearchButton();
-           
+
         }
 
         private void Menu2_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
         {
             string buttonName = e.Button.Properties.Caption;
-           
+
             switch (buttonName)
             {
                 case "RESET":
@@ -648,7 +786,7 @@ namespace HIS.Forms
                     RemoveAllSeries();
                     break;
             }
-            
+
         }
 
         private void DgvTrendData_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -676,10 +814,13 @@ namespace HIS.Forms
         {
             if (c2ChartContorl.Series.Count == 0) return;
 
-            
+
             string buttonName = e.Button.Properties.Caption;
             switch (buttonName)
             {
+                case "7Day":
+                    GetChartByPeroid("7Day");
+                    break;
                 case "1Day":
                     GetChartByPeroid("1Day");
                     break;
@@ -706,7 +847,7 @@ namespace HIS.Forms
                     break;
             }
 
-           
+
         }
 
         private void Backward()
@@ -768,7 +909,7 @@ namespace HIS.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            {               
+            {
                 realTimer.Start();
             }
 
@@ -777,7 +918,7 @@ namespace HIS.Forms
 
         private void ApplyTrendValue()
         {
-            for(int i=0;i<dtRealTime.Rows.Count; i++)
+            for (int i = 0; i < dtRealTime.Rows.Count; i++)
             {
                 string dpName = dtRealTime.Rows[i]["DP_NAME"].ToString();
                 Series series = null;
@@ -798,45 +939,45 @@ namespace HIS.Forms
                 }
             }
 
-           // foreach (DataRow realTimeValue in dtRealTime.Rows)
+            // foreach (DataRow realTimeValue in dtRealTime.Rows)
             //{
-                //foreach (Series sr in c2ChartContorl.Series)
-                //{
-                //    if (realTimeValue["DP_NAME"].ToString() == sr.Name)
-                //    {
-                //        DateTime start = Convert.ToDateTime(startDate.Text);
-                //        if (sr.Points.Count > 0 && Convert.ToDateTime(sr.Points[0].Argument) < start)
-                //        {
-                //            sr.Points.RemoveAt(0);
-                //        }
+            //foreach (Series sr in c2ChartContorl.Series)
+            //{
+            //    if (realTimeValue["DP_NAME"].ToString() == sr.Name)
+            //    {
+            //        DateTime start = Convert.ToDateTime(startDate.Text);
+            //        if (sr.Points.Count > 0 && Convert.ToDateTime(sr.Points[0].Argument) < start)
+            //        {
+            //            sr.Points.RemoveAt(0);
+            //        }
 
-                //        if (realTimeValue["CURR"].ToString() != "")
-                //        {
-                //            sr.Points.Add(new SeriesPoint(DateTime.Now, realTimeValue["CURR"]));
-                //            TrendDataToDatagridView(realTimeValue["DP_NAME"].ToString(), realTimeValue["CURR"].ToString());
-                //        }
+            //        if (realTimeValue["CURR"].ToString() != "")
+            //        {
+            //            sr.Points.Add(new SeriesPoint(DateTime.Now, realTimeValue["CURR"]));
+            //            TrendDataToDatagridView(realTimeValue["DP_NAME"].ToString(), realTimeValue["CURR"].ToString());
+            //        }
 
-                //    }
-                //}
+            //    }
+            //}
 
-                //Series series = null;
-                //series = c2ChartContorl.Series[realTimeValue["DP_NAME"].ToString()];
-                //if(series != null)
-                //{
-                //    //DateTime start = Convert.ToDateTime(startDate.Text);
-                //    //if (series.Points.Count > 0 && Convert.ToDateTime(series.Points[0].Argument) < start)
-                //    //{
-                //    //    series.Points.RemoveAt(0);
-                //    //}
+            //Series series = null;
+            //series = c2ChartContorl.Series[realTimeValue["DP_NAME"].ToString()];
+            //if(series != null)
+            //{
+            //    //DateTime start = Convert.ToDateTime(startDate.Text);
+            //    //if (series.Points.Count > 0 && Convert.ToDateTime(series.Points[0].Argument) < start)
+            //    //{
+            //    //    series.Points.RemoveAt(0);
+            //    //}
 
-                //    //if (realTimeValue["CURR"].ToString() != "")
-                //    //{
-                //    //    series.Points.Add(new SeriesPoint(DateTime.Now, realTimeValue["CURR"]));
-                //    //    TrendDataToDatagridView(realTimeValue["DP_NAME"].ToString(), realTimeValue["CURR"].ToString());
-                //    //}
-                //}
+            //    //if (realTimeValue["CURR"].ToString() != "")
+            //    //{
+            //    //    series.Points.Add(new SeriesPoint(DateTime.Now, realTimeValue["CURR"]));
+            //    //    TrendDataToDatagridView(realTimeValue["DP_NAME"].ToString(), realTimeValue["CURR"].ToString());
+            //    //}
+            //}
 
-           // }
+            // }
         }
 
         private void TrendDataToDatagridView(string dpName, string realTimeValue)
@@ -929,7 +1070,7 @@ namespace HIS.Forms
                 c2ChartContorl.Series.Remove(c2ChartContorl.Series[dpName]);
 
                 trendColor.RemoveTrendColor(color);
-               // dgvTrendData.Rows.RemoveAt(e.RowIndex);
+                // dgvTrendData.Rows.RemoveAt(e.RowIndex);
                 dtTrendData.Rows[e.RowIndex].Delete();
 
                 DataRow dataRow = null;

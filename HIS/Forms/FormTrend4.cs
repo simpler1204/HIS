@@ -73,9 +73,6 @@ namespace HIS.Forms
                 {
                     MessageBox.Show(ex.Message);
                 }
-
-
-
             }
         }
     }

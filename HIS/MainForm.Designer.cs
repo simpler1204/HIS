@@ -141,7 +141,7 @@
             this.btnSms.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnSms.Size = new System.Drawing.Size(220, 60);
             this.btnSms.TabIndex = 4;
-            this.btnSms.Text = "SMS 威信";
+            this.btnSms.Text = "SMS / Wechat";
             this.btnSms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSms.UseVisualStyleBackColor = true;

@@ -49,8 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtWork = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnMenu = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.dgUser = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -60,6 +60,8 @@
             this.rdoWechatAllOn = new System.Windows.Forms.RadioButton();
             this.rdoWechatAllOff = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtPrefix = new System.Windows.Forms.TextBox();
+            this.txtCallBack = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.s1WechatOn = new System.Windows.Forms.RadioButton();
             this.s1WechatOff = new System.Windows.Forms.RadioButton();
@@ -87,8 +89,6 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtPrefix = new System.Windows.Forms.TextBox();
-            this.txtCallBack = new System.Windows.Forms.TextBox();
             this.windowsUIButtonPanel2 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.windowsUIButtonPanel1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.groupBox1.SuspendLayout();
@@ -202,6 +202,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Users";
             // 
+            // txtWork
+            // 
+            this.txtWork.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWork.Location = new System.Drawing.Point(286, 21);
+            this.txtWork.Name = "txtWork";
+            this.txtWork.Size = new System.Drawing.Size(98, 23);
+            this.txtWork.TabIndex = 15;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -212,14 +220,6 @@
             this.label3.Size = new System.Drawing.Size(71, 14);
             this.label3.TabIndex = 14;
             this.label3.Text = "WORK NO :";
-            // 
-            // txtWork
-            // 
-            this.txtWork.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWork.Location = new System.Drawing.Point(286, 21);
-            this.txtWork.Name = "txtWork";
-            this.txtWork.Size = new System.Drawing.Size(98, 23);
-            this.txtWork.TabIndex = 15;
             // 
             // btnMenu
             // 
@@ -300,12 +300,12 @@
             this.groupBox2.Controls.Add(this.rdoWechatAllOff);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(279, 36);
+            this.groupBox2.Location = new System.Drawing.Point(293, 36);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 58);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "威信 ALL ON/OFF";
+            this.groupBox2.Text = "Wechat ALL ON/OFF";
             // 
             // rdoWechatAllOn
             // 
@@ -353,10 +353,24 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(550, 14);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(503, 607);
+            this.groupBox3.Size = new System.Drawing.Size(530, 607);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Setting";
+            // 
+            // txtPrefix
+            // 
+            this.txtPrefix.Location = new System.Drawing.Point(359, 417);
+            this.txtPrefix.Name = "txtPrefix";
+            this.txtPrefix.Size = new System.Drawing.Size(139, 23);
+            this.txtPrefix.TabIndex = 20;
+            // 
+            // txtCallBack
+            // 
+            this.txtCallBack.Location = new System.Drawing.Point(105, 417);
+            this.txtCallBack.Name = "txtCallBack";
+            this.txtCallBack.Size = new System.Drawing.Size(139, 23);
+            this.txtCallBack.TabIndex = 18;
             // 
             // groupBox8
             // 
@@ -364,7 +378,7 @@
             this.groupBox8.Controls.Add(this.s1WechatOff);
             this.groupBox8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.ForeColor = System.Drawing.Color.Gold;
-            this.groupBox8.Location = new System.Drawing.Point(279, 143);
+            this.groupBox8.Location = new System.Drawing.Point(293, 143);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(200, 58);
             this.groupBox8.TabIndex = 27;
@@ -401,7 +415,7 @@
             this.groupBox10.Controls.Add(this.s4WechatOff);
             this.groupBox10.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox10.ForeColor = System.Drawing.Color.Gold;
-            this.groupBox10.Location = new System.Drawing.Point(279, 327);
+            this.groupBox10.Location = new System.Drawing.Point(293, 327);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(200, 58);
             this.groupBox10.TabIndex = 30;
@@ -475,7 +489,7 @@
             this.groupBox11.Controls.Add(this.s2WechatOff);
             this.groupBox11.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.ForeColor = System.Drawing.Color.Gold;
-            this.groupBox11.Location = new System.Drawing.Point(279, 204);
+            this.groupBox11.Location = new System.Drawing.Point(293, 204);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(200, 58);
             this.groupBox11.TabIndex = 28;
@@ -549,7 +563,7 @@
             this.groupBox12.Controls.Add(this.s3WechatOff);
             this.groupBox12.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox12.ForeColor = System.Drawing.Color.Gold;
-            this.groupBox12.Location = new System.Drawing.Point(279, 265);
+            this.groupBox12.Location = new System.Drawing.Point(293, 265);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(200, 58);
             this.groupBox12.TabIndex = 29;
@@ -661,7 +675,7 @@
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApply.ForeColor = System.Drawing.Color.White;
-            this.btnApply.Location = new System.Drawing.Point(279, 488);
+            this.btnApply.Location = new System.Drawing.Point(293, 488);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(200, 48);
             this.btnApply.TabIndex = 22;
@@ -674,7 +688,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(277, 421);
+            this.label5.Location = new System.Drawing.Point(291, 421);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 14);
             this.label5.TabIndex = 21;
@@ -690,20 +704,6 @@
             this.label6.Size = new System.Drawing.Size(83, 14);
             this.label6.TabIndex = 19;
             this.label6.Text = "CALL BACK :";
-            // 
-            // txtPrefix
-            // 
-            this.txtPrefix.Location = new System.Drawing.Point(345, 417);
-            this.txtPrefix.Name = "txtPrefix";
-            this.txtPrefix.Size = new System.Drawing.Size(139, 23);
-            this.txtPrefix.TabIndex = 20;
-            // 
-            // txtCallBack
-            // 
-            this.txtCallBack.Location = new System.Drawing.Point(105, 417);
-            this.txtCallBack.Name = "txtCallBack";
-            this.txtCallBack.Size = new System.Drawing.Size(139, 23);
-            this.txtCallBack.TabIndex = 18;
             // 
             // windowsUIButtonPanel2
             // 

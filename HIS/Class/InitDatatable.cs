@@ -278,7 +278,7 @@ namespace HIS.Class
                 table.Columns.Add("MESSAGE", typeof(string));
                 table.Columns.Add("SUCCESS", typeof(string));
                 table.Columns.Add("ALARM_TIME", typeof(string));
-                table.Columns.Add("DSNT", typeof(string));
+               // table.Columns.Add("DSNT", typeof(string));
             }
 
         }

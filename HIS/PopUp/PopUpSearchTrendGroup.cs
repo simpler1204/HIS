@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HIS.Class;
+using HIS.Forms;
 using Oracle.ManagedDataAccess.Client;
 
 namespace HIS.PopUp
@@ -17,6 +18,9 @@ namespace HIS.PopUp
         private DataTable _dtGroup = new DataTable("TrendGroup");
         private MainForm _mainForm = null;
         private string _distinct;
+        private FormTrend1 _frmTrend1 = null;
+        private FormTrend2 _frmTrend2 = null;
+        private FormTrend3 _frmTrend3 = null;
 
         public PopUpSearchTrendGroup(MainForm mainForm, string distinct)
         {
@@ -200,10 +204,159 @@ namespace HIS.PopUp
                 _mainForm.sendMsgToOA("find;TrendGroupFromHIS;" + page + ";" + part + ";" + group);
             }
 
-            if(isHIS == true)
+            if (isHIS == true)
             {
-                
+                bool isLeftOn = false;
+                bool isRightOn = false;
+
+
+                string part = dataGridView1["PART_NAME", row].Value.ToString();
+                string group = dataGridView1["GROUP_NAME", row].Value.ToString();
+
+                int count = IsBoth(part, group);
+                if (count == -1) return;
+
+                if (count == 0)
+                {
+                    OpenTrend1(part, group);
+                }
+                else
+                {
+                    OpenTrend2(part, group);
+                    OpenTrend3(part, group);
+
+
+
+                    //foreach (Form form in Application.OpenForms)
+                    //{
+                    //    if (form.GetType() == typeof(FormTrend3))
+                    //    {
+                    //        form.Activate();
+                    //        form.WindowState = FormWindowState.Normal;
+                    //        _frmTrend3.CreateSeriesByTrendGroup(part, group, "right");
+                    //        isRightOn = true;
+                    //    }
+                    //}                                    
+
+                    //if (isRightOn == false)
+                    //{
+                    //    _frmTrend3 = new FormTrend3(_mainForm);
+                    //    _frmTrend3.Show();
+                    //    _frmTrend3.Size = new Size(900, 1000);
+                    //    _frmTrend3.Location = new Point(910, 0);
+                    //    _frmTrend3.CreateSeriesByTrendGroup(part, group, "right");
+                    //}
+
+                }
             }
+        }
+
+        private void OpenTrend1(string part, string group)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(FormTrend1))
+                {
+                    form.Activate();
+                    form.WindowState = FormWindowState.Normal;
+                    _frmTrend1.CreateSeriesByTrendGroup(part, group, "left");
+                    return;
+                }
+            }
+            _frmTrend1 = new FormTrend1(_mainForm);
+            _frmTrend1.Show();
+            _frmTrend1.CreateSeriesByTrendGroup(part, group, "left");
+        }
+
+        private void OpenTrend2(string part, string group)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(FormTrend2))
+                {
+                    form.Activate();
+                    form.WindowState = FormWindowState.Normal;
+                    _frmTrend2.CreateSeriesByTrendGroup(part, group, "left");
+                    return;
+                }
+            }
+            _frmTrend2 = new FormTrend2(_mainForm);
+           
+            _frmTrend2.Size = new Size(955, 1000);          
+            _frmTrend2.Show();           
+            _frmTrend2.Location = new Point(0, 10);
+            _frmTrend2.CreateSeriesByTrendGroup(part, group, "left");           
+
+        }
+
+        private void OpenTrend3(string part, string group)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(FormTrend3))
+                {
+                    form.Activate();
+                    form.WindowState = FormWindowState.Normal;
+                    _frmTrend3.CreateSeriesByTrendGroup(part, group, "right");
+                    return;
+                }
+            }
+            _frmTrend3 = new FormTrend3(_mainForm);          
+            _frmTrend3.Show();        
+            _frmTrend3.Size = new Size(955, 1000);
+            _frmTrend3.Location = new Point(956, 10);
+            _frmTrend3.CreateSeriesByTrendGroup(part, group, "right");     
+        }
+
+        private int IsBoth(string part, string group)
+        {
+            if (!Database.Open())
+            {
+                MessageBox.Show("DataBase connect to fail..", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return -1;
+            }
+
+            string query = "SELECT COUNT(DP_NAME2) FROM C2_TREND_GROUP WHERE PART_NAME = :1 AND GROUP_NAME = :2";
+
+            OracleCommand cmd = null;
+            OracleDataReader reader = null;
+            int count = 0;
+            try
+            {
+                cmd = new OracleCommand(query, Database.OracleConn);
+                cmd.Parameters.Add(":1", OracleDbType.NVarchar2).Value = part;
+                cmd.Parameters.Add(":2", OracleDbType.NVarchar2).Value = group;
+
+                reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        count = int.Parse(reader[0].ToString());
+                    }
+                }
+
+                return count;
+            }
+            catch(Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                reader.Dispose();
+                cmd.Dispose();
+                Database.Close();
+            }
+
+
+            
+           
+
+           
         }
     }
 }

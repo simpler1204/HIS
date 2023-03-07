@@ -105,7 +105,7 @@ namespace HIS.Forms
             string dsnt = cmbDsnt.Text == "ALL" ? "%" : "%" + cmbDsnt.Text + "%";
 
             string query = @"SELECT TO_CHAR(SENT_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS SENT_TIME, NAME, PHONE, MESSAGE, SUCCESS, 
-                             TO_CHAR(ALARM_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS ALARM_TIME, DSNT FROM  HMI_SMS_LIST
+                             TO_CHAR(ALARM_TIME, 'YYYY.MM.DD HH24:MI:SS.FF3') AS ALARM_TIME FROM  HMI_SMS_LIST
                              WHERE SENT_TIME BETWEEN: 1 AND: 2 AND NAME LIKE: 3 AND SUCCESS LIKE: 4 AND NVL(DSNT, '%') LIKE :5";
 
             OracleCommand cmd = null;
@@ -131,7 +131,7 @@ namespace HIS.Forms
                         dr["MESSAGE"] = reader["MESSAGE"].ToString();
                         dr["SUCCESS"] = reader["SUCCESS"].ToString();
                         dr["ALARM_TIME"] = reader["ALARM_TIME"].ToString();
-                        dr["DSNT"] = reader["DSNT"].ToString();
+                       // dr["DSNT"] = reader["DSNT"].ToString();
 
                         _dtSmsHist.Rows.Add(dr);
                     }
@@ -229,10 +229,10 @@ namespace HIS.Forms
             dg.Columns["ALARM_TIME"].DefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
             dg.Columns["ALARM_TIME"].DefaultCellStyle.ForeColor = Color.White;
 
-            dg.Columns["DSNT"].Width = 100;
-            dg.Columns["DSNT"].ReadOnly = true;
-            dg.Columns["DSNT"].DefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
-            dg.Columns["DSNT"].DefaultCellStyle.ForeColor = Color.White;
+           // dg.Columns["DSNT"].Width = 100;
+            //dg.Columns["DSNT"].ReadOnly = true;
+            //dg.Columns["DSNT"].DefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
+            //dg.Columns["DSNT"].DefaultCellStyle.ForeColor = Color.White;
 
         }
     }

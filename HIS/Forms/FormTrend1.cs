@@ -38,10 +38,12 @@ namespace HIS.Forms
                     }
                 }
             }
-            if (msg[0] == "trendAdd")
-            {               
-                trendQueue.Enqueue(msg[1]);
-            }
+            //if (msg[0] == "trendAdd")
+            //{               
+            //    trendQueue.Enqueue(msg[1]);
+            //}
         }
+
+        
     }
 }
