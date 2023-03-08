@@ -398,6 +398,17 @@ namespace HIS.Forms
                 c2SwiftPlotDiagram.AxisX.WholeRange.SetMinMaxValues(start, end);
                 c2SwiftPlotDiagram.AxisX.VisualRange.SetMinMaxValues(start, end);
             }
+            if (period == "3Day")
+            {
+                //Time Picker 설정               
+                startDate.Text = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd HH:mm:ss");
+                endDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                DateTime start = DateTime.Now.AddDays(-3);
+                DateTime end = DateTime.Now;
+                c2SwiftPlotDiagram.AxisX.WholeRange.SetMinMaxValues(start, end);
+                c2SwiftPlotDiagram.AxisX.VisualRange.SetMinMaxValues(start, end);
+            }            
             if (period == "1Day")
             {
                 //Time Picker 설정               

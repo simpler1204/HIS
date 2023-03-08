@@ -821,6 +821,9 @@ namespace HIS.Forms
                 case "7Day":
                     GetChartByPeroid("7Day");
                     break;
+                case "3Day":
+                    GetChartByPeroid("3Day");
+                    break;
                 case "1Day":
                     GetChartByPeroid("1Day");
                     break;

@@ -96,6 +96,20 @@ namespace HIS.Forms
 
             if (_dtSmsUser.Rows.Count < 1) return;
 
+            dgUser.EndEdit();
+
+            //for (int i=0; i<dgUser.Rows.Count; i++)
+            //{
+               
+            //    for(int j = 0; j<dgUser.Columns.Count; j++)
+            //    {
+            //        //_dtSmsUser.Rows[i][j] = dgUser[j, i].Value;
+                   
+
+            //        MessageBox.Show(dgUser[j, i].Value.ToString());
+            //    }
+            //}
+
             string deleteQuery = "DELETE HMI_SMS_USER";
             string insertQuery = @"INSERT INTO HMI_SMS_USER(SEQ, USER_NAME, PHONE_NUMBER, WORK_NO, RECEIVE_YN)
                                    VALUES(:1, :2, :3, :4, :5)";
@@ -104,6 +118,7 @@ namespace HIS.Forms
 
             int rtn = cmd.ExecuteNonQuery();
             int emptyCount = 0;
+                       
 
             foreach (DataRow dr in _dtSmsUser.Rows)
             {                
@@ -442,7 +457,7 @@ namespace HIS.Forms
             s3_wechat = s3WechatOn.Checked == true ? "TRUE" : "FALSE";
             s4_wechat = s4WechatOn.Checked == true ? "TRUE" : "FALSE";
 
-            callback = txtCallBack.Text;
+            callback = "1234";// txtCallBack.Text;
             prefix = txtPrefix.Text;
 
             string query = @"UPDATE HMI_SMS_ON SET svr_1_sms = :1,
@@ -484,9 +499,8 @@ namespace HIS.Forms
                 cmd.Dispose();
                 Database.Close();
             }
-
-
-
         }
+
+ 
     }
 }

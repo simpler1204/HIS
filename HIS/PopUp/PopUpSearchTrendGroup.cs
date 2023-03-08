@@ -264,7 +264,10 @@ namespace HIS.PopUp
                 }
             }
             _frmTrend1 = new FormTrend1(_mainForm);
+            _frmTrend1.Width = 1800;
+            _frmTrend1.Height = 1000;
             _frmTrend1.Show();
+
             _frmTrend1.CreateSeriesByTrendGroup(part, group, "left");
         }
 

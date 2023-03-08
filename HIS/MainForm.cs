@@ -255,13 +255,13 @@ namespace HIS
 
 
             // 두번째 모니터에 화면 Max size
-            ScreenSetting(this);  
+            ScreenSetting(this);
 
-            //Oracle 연결, 연결 안되면 프로그램 종료
+           // Oracle 연결, 연결 안되면 프로그램 종료
             OracleConnection result = Database.CreateDatabase();
-            if(result == null)
+            if (result == null)
             {
-                MessageBox.Show("Oracle connecting was failed.\nHIS will be terminated.", 
+                MessageBox.Show("Oracle connecting was failed.\nHIS will be terminated.",
                     "Database Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
